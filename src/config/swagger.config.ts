@@ -1,24 +1,22 @@
 import { INestApplication } from "@nestjs/common";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
-import { SecuritySchemeObject } from "@nestjs/swagger/dist/interfaces/open-api-spec.interface";
+import type { SecuritySchemeObject } from "@nestjs/swagger";
 
-export const swaggerConfigInit = (app:INestApplication):void => {
+export function SwaggerConfigInit(app: INestApplication): void {
     const document = new DocumentBuilder()
-    .setTitle("Virgol")
-    .setDescription("Back-End of Virgol Website")
-    .setVersion("v0.0.1")
-    .addBearerAuth(SwaggerAuthConfig(),'Authorization')
-    .build()
-
-    const swaggerDocument = SwaggerModule.createDocument(app,document)
-    SwaggerModule.setup('/swagger', app, swaggerDocument)
+        .setTitle("Virgool")
+        .setDescription("backend of virgool website")
+        .setVersion("v0.0.1")
+        .addBearerAuth(SwaggerAuthConfig(), "Authorization")
+        .build();
+    const swaggerDocument = SwaggerModule.createDocument(app, document);
+    SwaggerModule.setup("/swagger", app, swaggerDocument)
 }
-
-export const SwaggerAuthConfig = ():SecuritySchemeObject => {
+function SwaggerAuthConfig(): SecuritySchemeObject {
     return {
-        type : "http",
-        bearerFormat : "JWT",
-        in : "bearer",
-        scheme : "bearer"
+        type: "http",
+        bearerFormat: "JWT",
+        in: "header",
+        scheme: "bearer"
     }
 }

@@ -1,8 +1,8 @@
-import { FileInterceptor } from "@nestjs/platform-express"
-import { multerDestination, multerStorage } from "../utils/multer.util"
+import { FileInterceptor } from "@nestjs/platform-express";
+import { multerStorage } from "../utils/multer.util";
 
-export const UploadFile = (fieldName : string, fileName : string = 'images') =>{
+export function UploadFile(fieldName: string, folderName: string = 'images') {
     return class UploadUtility extends FileInterceptor(fieldName, {
-        storage : multerStorage(fileName)
-    }){}
+        storage:  multerStorage(folderName)
+    }) {}
 }

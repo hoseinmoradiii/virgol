@@ -1,27 +1,28 @@
-import { ApiProperty } from "@nestjs/swagger"
-import { AuthType } from "../enums/type.enum"
-import { IsEnum, IsString, Length } from "class-validator"
-import { AuthMethod } from "../enums/method.enum"
+import { ApiProperty } from "@nestjs/swagger";
+import { AuthType } from "../enums/type.enum";
+import { IsEnum, IsString, Length } from "class-validator";
+import { AuthMethod } from "../enums/method.enum";
 
 export class AuthDto {
     @ApiProperty()
     @IsString()
     @Length(3, 100)
-    username : string
-
-    @ApiProperty({enum : AuthType})
+    username: string;
+    @ApiProperty({enum: AuthType})
     @IsEnum(AuthType)
-    type : string
-
-    @ApiProperty({enum : AuthMethod})
+    type: string;
+    @ApiProperty({enum: AuthMethod})
     @IsEnum(AuthMethod)
-    @ApiProperty()
-    method : AuthMethod
+    method: AuthMethod;
 }
 
 export class CheckOtpDto {
     @ApiProperty()
     @IsString()
-    @Length(5,5)
-    code : string
+    @Length(5, 5)
+    code: string;
+}
+export class UserBlockDto {
+    @ApiProperty()
+    userId: number;
 }

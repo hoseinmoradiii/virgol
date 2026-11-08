@@ -1,36 +1,37 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Query, UseGuards } from "@nestjs/common";
-import { CommentService } from "../services/comment.service";
-import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
-import { AuthGuard } from "../../auth/guards/auth.guard";
-import { CreateCommentDto } from "../dto/comment.dto";
-import { Pagination } from "../../../common/decorator/pagination.decorator";
-import { PaginationDto } from "../../../common/dtos/pagination.dto";
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query, UseGuards } from '@nestjs/common';
+import { BlogService } from '../services/blog.service';
+import { CreateBlogDto, FilterBlogDto, UpdateBlogDto } from '../dto/blog.dto';
+import { ApiBearerAuth, ApiConsumes, ApiTags } from '@nestjs/swagger';
+import { SwaggerConsumes } from 'src/common/enums/swagger-consumes.enum';
+import { AuthGuard } from '../../auth/guards/auth.guard';
+import { BlogCommentService } from '../services/comment.service';
+import { CreateCommentDto } from '../dto/comment.dto';
+import { Pagination } from 'src/common/decorators/pagination.decorator';
+import { PaginationDto } from 'src/common/dtos/pagination.dto';
 
 @Controller('blog-comment')
-@ApiTags('Blog')
+@ApiTags("Blog")
 @ApiBearerAuth("Authorization")
 @UseGuards(AuthGuard)
-export class CommentController{
-  constructor(private readonly commentService : CommentService) {}
+export class BlogCommentController {
+  constructor(private readonly blogCommentService: BlogCommentService) { }
 
-  @Post('/')
-  create(@Body() createCommentDto : CreateCommentDto){
-    return this.commentService.createComment(createCommentDto)
+  @Post("/")
+  @ApiConsumes(SwaggerConsumes.UrlEncoded, SwaggerConsumes.Json)
+  create(@Body() commentDto: CreateCommentDto) {
+    return this.blogCommentService.create(commentDto);
   }
-
-  @Get()
+  @Get("/")
   @Pagination()
-  find(@Query() paginationDto : PaginationDto){
-    return this.commentService.find(paginationDto)
+  find(@Query() paginationDto: PaginationDto) {
+    return this.blogCommentService.find(paginationDto)
   }
-
-  @Put('/accept/:id')
-  acceptComment(@Param('id', ParseIntPipe) id : number){
-    return this.commentService.accept(id)
+  @Put("/accept/:id")
+  accept(@Param("id", ParseIntPipe) id: number) {
+    return this.blogCommentService.accept(id)
   }
-
-  @Put('/reject/:id')
-  rejectComment(@Param('id', ParseIntPipe) id : number){
-    return this.commentService.reject(id)
+  @Put("/reject/:id")
+  reject(@Param("id", ParseIntPipe) id: number) {
+    return this.blogCommentService.reject(id)
   }
 }

@@ -1,17 +1,14 @@
-import { BaseEntity } from "src/common/abstract/base.entity";
-import { EntityNames } from "src/common/types/enums/entity.enum";
+import { BaseEntity } from "src/common/abstracts/base.entity";
+import { EntityName } from "src/common/enums/entity.enum";
+import { BlogCategoryEntity } from "src/modules/blog/entities/blog-category.entity";
 import { Column, Entity, OneToMany } from "typeorm";
-import { BlogCategoryEntity } from "../../blog/entity/blog-category.entity";
 
-@Entity(EntityNames.Category)
-export class CategoryEntity extends BaseEntity{
+@Entity(EntityName.Category)
+export class CategoryEntity extends BaseEntity {
     @Column()
-    title : string
-    
-    @Column({nullable : true})
-    priority : number
-
+    title: string;
+    @Column({nullable: true})
+    priority: number
     @OneToMany(() => BlogCategoryEntity, blog => blog.category)
-    blogCategory : [];
-
+    blog_categories: BlogCategoryEntity[];
 }

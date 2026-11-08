@@ -1,5 +1,5 @@
-export enum Gender  {
-    Male="male",
-    Female="female",
-    Others="others"
+export enum Gender {
+    Men = "مرد",
+    Women = "زن",
+    Other = "سایر"
 }

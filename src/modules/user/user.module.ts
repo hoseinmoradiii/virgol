@@ -2,20 +2,19 @@ import { Module } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserController } from './user.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ProfileEntity } from './entity/profile.entity';
-import { UserEntity } from './entity/user.entity';
-import { OtpEntity } from './entity/otp.entity';
-import { AuthMethod } from '../auth/enums/method.enum';
+import { UserEntity } from './entities/user.entity';
+import { ProfileEntity } from './entities/profile.entity';
+import { OtpEntity } from './entities/otp.entity';
 import { AuthModule } from '../auth/auth.module';
-import { FollowEntity } from './entity/follow.entity';
+import { FollowEntity } from './entities/follow.entity';
 
 @Module({
-  imports : [
+  imports: [
     AuthModule,
-    TypeOrmModule.forFeature([UserEntity, OtpEntity, ProfileEntity, FollowEntity])
+    TypeOrmModule.forFeature([UserEntity, ProfileEntity, OtpEntity, FollowEntity])
   ],
   controllers: [UserController],
   providers: [UserService],
-  exports : [UserService, TypeOrmModule]
+  exports: [UserService, TypeOrmModule],
 })
 export class UserModule {}

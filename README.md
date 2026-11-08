@@ -2,9 +2,6 @@
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
   <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
     <p align="center">
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
@@ -25,21 +22,16 @@
 ## Description
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-<p>
-This project is a sample of a blog website. Here user can register, create blog, add comment and also search
-for other blogs. It's possible to search title, content, and category.
-Database used for this project is postgresql.
-</p>
 
 ## Installation
 
-```bash
+```bash {"id":"01HXR5R124SFVJB04THSWKZTCC"}
 $ npm install
 ```
 
 ## Running the app
 
-```bash
+```bash {"id":"01HXR5R124SFVJB04THVPMRZCN"}
 # development
 $ npm run start
 
@@ -52,7 +44,7 @@ $ npm run start:prod
 
 ## Test
 
-```bash
+```bash {"id":"01HXR5R124SFVJB04THVV6PGAH"}
 # unit tests
 $ npm run test
 
